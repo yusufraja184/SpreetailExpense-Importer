@@ -1,0 +1,5 @@
+IMPORT REPORT
+==================================================
+ERROR | Row 12 | Missing paid_by | House cleaning supplies
+WARNING | Row 27 | Missing currency | Groceries DMart
+WARNING | Row 13 | Missing split_type | Rohan paid Aisha back

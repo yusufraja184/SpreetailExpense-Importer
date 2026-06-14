@@ -2,29 +2,37 @@ import pandas as pd
 
 df = pd.read_csv("Expenses Export.csv")
 
-print("ANOMALY REPORT")
-print("=" * 50)
+anomalies = []
 
 # Missing paid_by
-missing_paid = df[df["paid_by"].isnull()]
-
-for index, row in missing_paid.iterrows():
-    print(f"\n[ERROR] Row {index + 1}")
-    print("Missing paid_by")
-    print("Description:", row["description"])
+for index, row in df[df["paid_by"].isnull()].iterrows():
+    anomalies.append(
+        f"ERROR | Row {index+1} | Missing paid_by | {row['description']}"
+    )
 
 # Missing currency
-missing_currency = df[df["currency"].isnull()]
-
-for index, row in missing_currency.iterrows():
-    print(f"\n[WARNING] Row {index + 1}")
-    print("Missing currency")
-    print("Description:", row["description"])
+for index, row in df[df["currency"].isnull()].iterrows():
+    anomalies.append(
+        f"WARNING | Row {index+1} | Missing currency | {row['description']}"
+    )
 
 # Missing split_type
-missing_split = df[df["split_type"].isnull()]
+for index, row in df[df["split_type"].isnull()].iterrows():
+    anomalies.append(
+        f"WARNING | Row {index+1} | Missing split_type | {row['description']}"
+    )
 
-for index, row in missing_split.iterrows():
-    print(f"\n[WARNING] Row {index + 1}")
-    print("Missing split_type")
-    print("Description:", row["description"])
+print("IMPORT REPORT")
+print("=" * 50)
+
+for item in anomalies:
+    print(item)
+
+with open("reports/import_report.txt", "w") as file:
+    file.write("IMPORT REPORT\n")
+    file.write("=" * 50 + "\n")
+
+    for item in anomalies:
+        file.write(item + "\n")
+
+print("\nReport saved to reports/import_report.txt")
