@@ -7,6 +7,7 @@ This project imports a CSV expense dataset, detects anomalies, generates an impo
 The project was developed as part of the Spreetail Software Developer assignment.
 
 ---
+deployement link - https://spreetailexpense-importer-ovej6punm2e6tf7pozjapp7.streamlit.app/
 
 ## Features
 
